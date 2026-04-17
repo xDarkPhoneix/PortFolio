@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Github, ExternalLink, X, Award } from "lucide-react";
+import { projects } from "./projects";
 
 interface Project {
   id: number;
@@ -24,102 +25,10 @@ const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [activeFilter, setActiveFilter] = useState<string>("all");
 
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: "CampusPulse",
-      description:
-        "Centralized hackathon management for colleges with alumni integration.",
-      longDescription:
-        "HackVerse is a powerful full-stack platform that serves as a unified wrapper for hosting, managing, and submitting hackathon responses across different colleges. It enables admin-level creation of hackathons, submission tracking, and alumni integration. Built with MERN stack and Tailwind CSS, it features college-wise views, real-time data updates, and a robust admin panel. The alumni module lets colleges preserve and showcase student innovation history, while admins can add new alumni entries and moderate hackathon content. Designed for scalability and clean UX, it simplifies inter-college event collaboration.",
-      image:
-        "https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=800",
-      technologies: [
-        "React",
-        "Node.js",
-        "Express",
-        "MongoDB",
-        "Tailwind CSS",
-        "Socket.io",
-      ],
-      github: "https://github.com/yourusername/hackverse",
-      live: "https://hackverse.live",
-      category: "website",
-      featured: true,
-      stats: {
-        stars: 340,
-        users: "3.8K+",
-        awards: "Campus Innovator Award 2024",
-      },
-    },
-    {
-      id: 2,
-      title: "Talk-A-Tive",
-      description:
-        "Real-time chat platform with group messaging, search, and user management",
-      longDescription: `Talk-A-Tive is a dynamic full-stack chat application designed for seamless real-time communication. Built with React, Node.js, Express, and MongoDB, it offers features such as 1-on-1 and group messaging, live typing indicators, user search, and real-time notifications via Socket.IO. The app includes authentication with JWT, responsive UI with Chakra UI, and admin tools for group management. Ideal for collaborative environments, student groups, or startup teams.`,
-      image:
-        "https://images.pexels.com/photos/6078127/pexels-photo-6078127.jpeg?auto=compress&cs=tinysrgb&w=800",
-      technologies: [
-        "React",
-        "Node.js",
-        "Express",
-        "MongoDB",
-        "Socket.IO",
-        "Chakra UI",
-      ],
-      github: "https://github.com/xDarkPhoneix/talk-a-tive", // replace with actual repo if available
-      live: "https://talk-a-tive-f10i.onrender.com",
-      category: "web",
-      featured: true,
-      stats: {
-        stars: 189,
-        users: "1.2K+",
-        awards: "Best Real-time App Demo - DevFest 2024",
-      },
-    },
-    {
-      id: 3,
-      title: "InkSpire",
-      description:
-        "Modern blogging platform with Markdown support and dynamic routing",
-      longDescription: `InkSpire is a sleek, full-stack blog platform designed for developers and creators to publish and manage content effortlessly. Built with Next.js, Tailwind CSS, and MDX, it supports dynamic routing, dark mode, responsive layouts, and static site generation for blazing-fast performance. Authors can write posts using Markdown with embedded JSX, making content both flexible and developer-friendly. Ideal for personal portfolios, technical blogs, or publication hubs.`,
-      image:
-        "https://images.pexels.com/photos/1591060/pexels-photo-1591060.jpeg?auto=compress&cs=tinysrgb&w=800",
-      technologies: ["Next.js", "React", "Tailwind CSS", "MDX", "Vercel"],
-      github: "https://github.com/xDarkPhoneix/blog-platform", // Replace with your actual repo
-      live: "https://blog-web-s-ite.vercel.app",
-      category: "website",
-      featured: false,
-      stats: {
-        stars: 92,
-        users: "500+",
-        awards: "Top Blog UI Clone - Open Source Week 2024",
-      },
-    },
-    {
-      id: 4,
-      title: "TaskForge",
-      description:
-        "Minimalist task manager with real-time updates and smart filters",
-      longDescription: `TaskForge is a full-stack task management web app designed to simplify productivity and collaboration. Built with React, Node.js, Express, and MongoDB, it features a sleek UI, real-time status updates, project-based task grouping, and intuitive drag-and-drop capabilities. Users can create, edit, and prioritize tasks, while smart filters and deadlines help stay organized. Optimized for both mobile and desktop experiences, it serves as an ideal tool for individuals and teams alike.`,
-      image:
-        "https://images.pexels.com/photos/769315/pexels-photo-769315.jpeg?auto=compress&cs=tinysrgb&w=800",
-      technologies: ["React", "Node.js", "Express", "MongoDB", "Socket.io"],
-      github: "https://github.com/xDarkPhoneix/task-manager", // Replace this with your actual repo link
-      live: "https://task-manager-sagg.onrender.com",
-      category: "web",
-      featured: false,
-      stats: {
-        stars: 137,
-        users: "1.2K+",
-        awards: "Best UI Workflow Tool - Buildathon 2024",
-      },
-    },
-  ];
+
 
   const categories = [
-     { id: 'all', name: 'All Projects' },
+    { id: "all", name: "All Projects" },
     { id: "web", name: "Web Apps" },
     { id: "website", name: "Web Sites" },
   ];
@@ -200,6 +109,7 @@ const Projects: React.FC = () => {
                     <img
                       src={project.image}
                       alt={project.title}
+                      loading="lazy"
                       className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -294,6 +204,7 @@ const Projects: React.FC = () => {
                   <img
                     src={selectedProject.image}
                     alt={selectedProject.title}
+                    loading="lazy"
                     className="w-full h-64 object-cover"
                   />
                   <button
@@ -321,11 +232,13 @@ const Projects: React.FC = () => {
                     )}
                   </div>
 
-                  <div className="mb-8">
-                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
-                      {selectedProject.longDescription}
-                    </p>
-                  </div>
+                  <ul className="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300 text-lg mb-2">
+                    {selectedProject.longDescription
+                      .split("\n\n")
+                      .map((point, index) => (
+                        <li key={index}>{point.replace("• ", "")}</li>
+                      ))}
+                  </ul>
 
                   {/* Stats */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">

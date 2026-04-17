@@ -28,7 +28,7 @@ const Internships: React.FC = () => {
       id: 1,
   company: "KitabWalah",
   role: "Software Engineer Intern",
-  duration: "Summer 2025 (3 months)",
+  duration: "Summer 2025 (1 months)",
   location: "Patna, Bihar, India",
   description:
     "Contributed to the full-stack development of KitabWalah, an online bookstore platform catering to a wide regional user base.",
@@ -52,6 +52,45 @@ const Internships: React.FC = () => {
   logo: "📚",
   color: "from-yellow-400 to-red-500",
     },
+    {
+  id: 2,
+  company: "D2D Social Studio Web Platform",
+  role: "Software Engineer Intern (Team Lead)",
+  duration: "Winter 2025 (1 months)",
+  location: "Patna ,Bihar ,India",
+  description:
+    "Led the end-to-end development of a client–organization service platform, managing a team of 13 developers and ensuring timely project delivery.",
+
+  achievements: [
+    "Led a team of 13 developers, coordinating task distribution, sprint planning, and progress tracking using Agile methodologies",
+    
+    "Architected and delivered a full-stack service platform enabling users to request and track services with an integrated admin dashboard",
+    
+    "Designed and implemented role-based access (admin/user) to manage services, requests, and workflows securely",
+    
+    "Ensured timely delivery of project milestones by streamlining development workflows and resolving blockers proactively",
+    
+    "Collaborated across frontend and backend teams to maintain code consistency, modular architecture, and scalability",
+    
+    "Improved overall development efficiency by introducing reusable components and structured API design",
+    
+    "Handled deployment and integration workflows, ensuring a stable and production-ready application",
+  ],
+
+  technologies: [
+    "React",
+    "Next.js",
+    "Node.js",
+    "Express.js",
+    "MongoDB",
+    "Tailwind CSS",
+    "Vercel",
+    "Git"
+  ],
+
+  logo: "🚀",
+  color: "from-blue-500 to-purple-600",
+}
   ];
 
   return (

@@ -1,9 +1,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown, Github, Linkedin, Mail, Download } from 'lucide-react';
-import img from "../Mylogo.png"
+
 
 const Hero: React.FC = () => {
+  const handleDownload = () => {
+  const link = document.createElement("a");
+  link.href = "/cv.pdf";
+  link.download = "Saurav_CV.pdf";
+  link.click();
+};
+
   const scrollToAbout = () => {
     document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -69,6 +76,7 @@ const Hero: React.FC = () => {
                 Explore My Work
               </motion.button>
               <motion.button
+              onClick={handleDownload}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-4 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-full font-semibold hover:border-primary-500 hover:text-primary-600 dark:hover:text-primary-400 transition-all duration-300 flex items-center gap-2"
@@ -122,8 +130,8 @@ const Hero: React.FC = () => {
               >
                 <div className="space-y-6">
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-slate-800 rounded-full flex items-center justify-center">
-                      <span className="text-white font-bold text-lg"><img src={img} alt="" /></span>
+                    <div className="w-12 h-12 bg-slate-800 rounded-full flex items-center justify-center overflow-hidden">
+                      <img src="/Mylogo.png" alt="Saurav Logo" className="w-full h-full object-cover" />
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900 dark:text-white">Saurav</h3>

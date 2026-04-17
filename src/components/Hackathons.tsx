@@ -42,6 +42,44 @@ const Hackathons: React.FC = () => {
       image: 'https://images.pexels.com/photos/374710/pexels-photo-374710.jpeg?auto=compress&cs=tinysrgb&w=800',
       category: 'finalist'
     },
+    {
+  id: 2,
+  name: 'Women Safety Alert System',
+  event: 'Bit by Bit Hackathon',
+  date: '2026',
+  position: 'Participant',
+  prize: '—',
+  participants: 200,
+  duration: '24-48 hours',
+  description: 'Developed a real-time women safety web application enabling instant emergency alerts with live location sharing and nearest police station detection.',
+  
+  project: 'Emergency response system that captures user location, identifies nearest police stations via API, and sends alerts with coordinates to registered contacts.',
+  
+  technologies: [
+    'React.js',
+    'Node.js',
+    'Express.js',
+    'Geolocation API',
+    'External Location API',
+    'SMS API'
+  ],
+  
+  achievements: [
+    'Built a complete end-to-end working prototype within limited hackathon timeframe',
+    
+    'Implemented real-time location tracking and emergency alert system for critical situations',
+    
+    'Integrated external APIs to fetch nearest police station data dynamically',
+    
+    'Designed a user-friendly interface optimized for quick access during emergencies',
+    
+    'Demonstrated strong problem-solving and rapid development skills under time constraints'
+  ],
+  
+  image: 'https://images.pexels.com/photos/3760067/pexels-photo-3760067.jpeg?auto=compress&cs=tinysrgb&w=800',
+  category: 'participant'
+}
+    
     
   ];
 
@@ -74,7 +112,7 @@ const Hackathons: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">Hackathon</span> Victories
+            <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">Hackathon</span> Participations
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
             Transforming ideas into award-winning solutions in high-pressure, time-constrained environments
