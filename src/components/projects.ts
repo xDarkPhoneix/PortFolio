@@ -59,8 +59,8 @@ const projects: Project[] = [
       "Socket.IO",
       "Chakra UI",
     ],
-    github: "https://github.com/xDarkPhoneix/talk-a-tive", // replace with actual repo if available
-    live: "https://talk-a-tive-f10i.onrender.com",
+    github: "https://github.com/xDarkPhoneix/Chat-App.git", // replace with actual repo if available
+    live: "https://chat-app-j86o.onrender.com",
     category: "web",
     featured: true,
     stats: {
