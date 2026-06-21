@@ -1,1 +1,1 @@
-{"/_not-found/page":"/_not-found","/api/projects/route":"/api/projects","/api/auth/login/route":"/api/auth/login","/login/page":"/login","/api/auth/logout/route":"/api/auth/logout","/page":"/","/admin/page":"/admin"}
+{"/_not-found/page":"/_not-found","/admin/page":"/admin","/api/auth/login/route":"/api/auth/login","/api/auth/logout/route":"/api/auth/logout","/page":"/","/api/projects/route":"/api/projects","/login/page":"/login"}
