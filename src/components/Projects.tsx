@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Github, ExternalLink, X, Award } from "lucide-react";
-import { projects } from "./projects";
 
 interface Project {
   id: number;
@@ -24,8 +24,23 @@ interface Project {
 const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [activeFilter, setActiveFilter] = useState<string>("all");
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
 
-
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch('/api/projects');
+        const data = await response.json();
+        setProjects(data);
+      } catch (error) {
+        console.error("Failed to fetch projects:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProjects();
+  }, []);
 
   const categories = [
     { id: "all", name: "All Projects" },
@@ -37,6 +52,10 @@ const Projects: React.FC = () => {
     activeFilter === "all"
       ? projects
       : projects.filter((project) => project.category === activeFilter);
+
+  if (loading) {
+    return <div className="py-20 text-center text-gray-500">Loading projects...</div>;
+  }
 
   return (
     <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-800">

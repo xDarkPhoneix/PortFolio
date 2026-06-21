@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Trophy, Users, Clock, Star, Calendar, Award } from 'lucide-react';

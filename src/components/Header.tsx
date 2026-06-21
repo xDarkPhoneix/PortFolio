@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X, Sun, Moon, Code, User, Briefcase, Trophy, Wrench, Mail } from 'lucide-react';
