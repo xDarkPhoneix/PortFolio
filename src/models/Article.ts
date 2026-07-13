@@ -23,7 +23,7 @@ const ArticleSchema = new mongoose.Schema<IArticle>({
 ArticleSchema.set('toJSON', {
   virtuals: true,
   versionKey: false,
-  transform: function (doc, ret) {
+  transform: function (doc, ret: Record<string, any>) {
     delete ret._id;
   }
 });

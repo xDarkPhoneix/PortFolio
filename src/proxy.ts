@@ -4,7 +4,7 @@ import { jwtVerify } from 'jose';
 
 const secretKey = new TextEncoder().encode('my-super-secret-key-for-portfolio-12345');
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const token = request.cookies.get('auth-token')?.value;
 
   if (!token) {

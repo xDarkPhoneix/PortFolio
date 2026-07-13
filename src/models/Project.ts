@@ -38,7 +38,7 @@ const ProjectSchema = new mongoose.Schema<IProject>({
 ProjectSchema.set('toJSON', {
   virtuals: true,
   versionKey: false,
-  transform: function (doc, ret) {
+  transform: function (doc, ret: Record<string, any>) {
     delete ret._id;
   }
 });

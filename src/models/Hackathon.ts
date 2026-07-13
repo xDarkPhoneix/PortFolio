@@ -19,7 +19,7 @@ const HackathonSchema = new mongoose.Schema({
 HackathonSchema.set('toJSON', {
   virtuals: true,
   versionKey: false,
-  transform: function (doc, ret) {
+  transform: function (doc, ret: Record<string, any>) {
     delete ret._id;
   }
 });
