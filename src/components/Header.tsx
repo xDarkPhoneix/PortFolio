@@ -1,13 +1,19 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Menu, X, Sun, Moon, Code, User, Briefcase, Trophy, Wrench, Mail } from 'lucide-react';
+import { Menu, X, Sun, Moon, Code, User, Briefcase, Trophy, Wrench, Mail, Cpu, BookOpen } from 'lucide-react';
+import { FaGithub } from 'react-icons/fa';
 import { useTheme } from '../contexts/ThemeContext';
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const { theme, toggleTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,9 +32,10 @@ const Header: React.FC = () => {
   const navItems = [
     { id: 'about', label: 'About', icon: User },
     { id: 'projects', label: 'Projects', icon: Code },
-    { id: 'internships', label: 'Internships', icon: Briefcase },
-    { id: 'hackathons', label: 'Hackathons', icon: Trophy },
+    { id: 'experience', label: 'Experience', icon: Briefcase },
     { id: 'skills', label: 'Skills', icon: Wrench },
+    { id: 'hackathons', label: 'Hackathons', icon: Trophy },
+    { id: 'blog', label: 'Blog', icon: BookOpen },
     { id: 'contact', label: 'Contact', icon: Mail },
   ];
 
@@ -77,7 +84,11 @@ const Header: React.FC = () => {
               onClick={toggleTheme}
               className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
             >
-              {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+              {mounted ? (
+                theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />
+              ) : (
+                <div className="w-5 h-5" />
+              )}
             </motion.button>
           </div>
 
@@ -89,7 +100,11 @@ const Header: React.FC = () => {
               onClick={toggleTheme}
               className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
             >
-              {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+              {mounted ? (
+                theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />
+              ) : (
+                <div className="w-5 h-5" />
+              )}
             </motion.button>
             <motion.button
               whileTap={{ scale: 0.9 }}

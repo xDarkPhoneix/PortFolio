@@ -6,9 +6,10 @@ const About = dynamic(() => import('../components/About'), {
   loading: () => <div className="text-center py-10 text-gray-400">Loading sections...</div> 
 });
 const Projects = dynamic(() => import('../components/Projects'));
-const Internships = dynamic(() => import('../components/Internships'));
-const Hackathons = dynamic(() => import('../components/Hackathons'));
+const Experience = dynamic(() => import('../components/Experience'));
 const Skills = dynamic(() => import('../components/Skills'));
+const HackathonsSection = dynamic(() => import('../components/HackathonsSection'));
+const BlogSection = dynamic(() => import('../components/BlogSection'));
 const Contact = dynamic(() => import('../components/Contact'));
 
 export default function Home() {
@@ -19,9 +20,10 @@ export default function Home() {
         <Hero />
         <About />
         <Projects />
-        <Internships />
-        <Hackathons />
+        <Experience />
         <Skills />
+        <HackathonsSection />
+        <BlogSection />
         <Contact />
       </main>
     </div>

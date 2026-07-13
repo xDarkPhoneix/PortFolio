@@ -1,1 +1,0 @@
-"use strict";exports.id=867,exports.ids=[867],exports.modules={8867:(o,t,e)=>{e.r(t),e.d(t,{default:()=>r});let r=(0,e(8570).createProxy)(String.raw`/home/xdarkphoneix/Downloads/MY-Portfolio/project/src/components/Hackathons.tsx#default`)}};

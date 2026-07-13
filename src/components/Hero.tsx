@@ -1,7 +1,9 @@
 "use client";
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDown, Github, Linkedin, Mail, Download } from 'lucide-react';
+import { ChevronDown, Mail, Download, Brain, Bot, Network, Sparkles } from 'lucide-react';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
 
 
 const Hero: React.FC = () => {
@@ -16,13 +18,28 @@ const Hero: React.FC = () => {
     document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const roles = ["Full-Stack Developer", "Agentic AI Engineer", "AI Automation Expert", "Python Developer"];
+  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="min-h-screen relative overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-purple-900">
+    <section className="min-h-screen relative overflow-hidden bg-white dark:bg-gray-950">
       {/* Animated Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary-400/20 rounded-full mix-blend-multiply filter blur-xl animate-float"></div>
-        <div className="absolute top-3/4 right-1/4 w-96 h-96 bg-secondary-400/20 rounded-full mix-blend-multiply filter blur-xl animate-float" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-pink-400/20 rounded-full mix-blend-multiply filter blur-xl animate-float" style={{ animationDelay: '4s' }}></div>
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Subtle grid background */}
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-soft-light"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+        
+        {/* Glowing orbs */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full mix-blend-screen filter blur-[100px] animate-float"></div>
+        <div className="absolute top-3/4 right-1/4 w-[500px] h-[500px] bg-secondary/20 rounded-full mix-blend-screen filter blur-[120px] animate-float" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-blue-500/20 rounded-full mix-blend-screen filter blur-[100px] animate-float" style={{ animationDelay: '4s' }}></div>
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
@@ -53,12 +70,22 @@ const Hero: React.FC = () => {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="space-y-4"
             >
-              <h2 className="text-2xl sm:text-3xl font-semibold text-gray-800 dark:text-gray-200">
-                Full-Stack Developer & Generative AI Enthusiast
-              </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl leading-relaxed">
-                I craft beautiful, functional digital experiences with modern technologies. 
-                Passionate about creating innovative solutions that make a difference.
+              <div className="h-10">
+                <motion.h2 
+                  key={currentRoleIndex}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.5 }}
+                  className="text-2xl sm:text-3xl font-semibold text-gray-800 dark:text-gray-200 flex items-center gap-2"
+                >
+                  <Sparkles className="w-6 h-6 text-primary" />
+                  {roles[currentRoleIndex]}
+                </motion.h2>
+              </div>
+              <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl leading-relaxed mt-2">
+                I craft beautiful, functional digital experiences with modern web technologies and 
+                build intelligent autonomous AI systems that solve real-world problems.
               </p>
             </motion.div>
 
@@ -71,19 +98,27 @@ const Hero: React.FC = () => {
               <motion.button
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={scrollToAbout}
-                className="px-8 py-4 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-full font-semibold hover:shadow-lg hover:shadow-primary-500/25 transition-all duration-300"
+                onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+                className="px-8 py-4 bg-primary text-primary-foreground rounded-full font-semibold hover:shadow-lg hover:shadow-primary/25 transition-all duration-300"
               >
-                Explore My Work
+                View Projects
               </motion.button>
               <motion.button
-              onClick={handleDownload}
+                onClick={handleDownload}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-full font-semibold hover:border-primary-500 hover:text-primary-600 dark:hover:text-primary-400 transition-all duration-300 flex items-center gap-2"
+                className="px-8 py-4 border-2 border-border text-foreground rounded-full font-semibold hover:border-primary hover:text-primary transition-all duration-300 flex items-center gap-2"
               >
                 <Download className="w-5 h-5" />
-                Download CV
+                Resume
+              </motion.button>
+              <motion.button
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-4 bg-secondary text-secondary-foreground rounded-full font-semibold hover:shadow-lg transition-all duration-300"
+              >
+                Contact Me
               </motion.button>
             </motion.div>
 
@@ -94,8 +129,8 @@ const Hero: React.FC = () => {
               className="flex gap-6"
             >
               {[
-                { icon: Github, href: 'https://github.com/xDarkPhoneix?tab=repositories', label: 'GitHub' },
-                { icon: Linkedin, href: 'https://www.linkedin.com/in/saurav-9b6794266?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', label: 'LinkedIn' },
+                { icon: FaGithub, href: 'https://github.com/xDarkPhoneix?tab=repositories', label: 'GitHub' },
+                { icon: FaLinkedin, href: 'https://www.linkedin.com/in/saurav-9b6794266?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', label: 'LinkedIn' },
                 { icon: Mail, href: 'mailto:rajsaurav589@gmail.com', label: 'Email' },
               ].map((social) => (
                 <motion.a
@@ -171,21 +206,29 @@ const Hero: React.FC = () => {
                 </div>
               </motion.div>
 
-              {/* Floating Elements */}
+              {/* Floating AI Elements */}
               <motion.div
-                animate={{ y: [-10, 10, -10] }}
-                transition={{ duration: 4, repeat: Infinity }}
-                className="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center shadow-lg"
+                animate={{ y: [-15, 15, -15], rotate: [0, 5, -5, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -top-8 -right-8 w-24 h-24 bg-primary/10 backdrop-blur-xl border border-primary/20 rounded-2xl flex items-center justify-center shadow-2xl"
               >
-                <span className="text-2xl">🚀</span>
+                <Brain className="w-12 h-12 text-primary" />
               </motion.div>
 
               <motion.div
-                animate={{ y: [10, -10, 10] }}
-                transition={{ duration: 3, repeat: Infinity, delay: 1 }}
-                className="absolute -bottom-4 -left-4 w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-500 rounded-xl flex items-center justify-center shadow-lg"
+                animate={{ y: [15, -15, 15], rotate: [0, -5, 5, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="absolute -bottom-8 -left-8 w-20 h-20 bg-secondary/10 backdrop-blur-xl border border-secondary/20 rounded-xl flex items-center justify-center shadow-2xl"
               >
-                <span className="text-xl">💡</span>
+                <Bot className="w-10 h-10 text-secondary" />
+              </motion.div>
+              
+              <motion.div
+                animate={{ scale: [1, 1.1, 1], opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                className="absolute top-1/2 -right-12 w-16 h-16 bg-blue-500/10 backdrop-blur-xl border border-blue-500/20 rounded-full flex items-center justify-center shadow-2xl"
+              >
+                <Network className="w-8 h-8 text-blue-500" />
               </motion.div>
             </div>
           </motion.div>

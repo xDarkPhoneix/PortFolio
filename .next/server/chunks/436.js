@@ -1,1 +1,0 @@
-"use strict";exports.id=436,exports.ids=[436],exports.modules={4436:(o,e,t)=>{t.r(e),t.d(e,{default:()=>r});let r=(0,t(8570).createProxy)(String.raw`/home/xdarkphoneix/Downloads/MY-Portfolio/project/src/components/Skills.tsx#default`)}};

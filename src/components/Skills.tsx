@@ -1,12 +1,11 @@
 "use client";
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code, Database,  Brain, Shield, Zap } from 'lucide-react';
+import { Code, Database, Brain, Shield, Zap, Terminal, Server, Bot } from 'lucide-react';
 
 interface Skill {
   name: string;
   level: number;
-  category: string;
 }
 
 interface SkillCategory {
@@ -15,40 +14,82 @@ interface SkillCategory {
   icon: React.ElementType;
   color: string;
   skills: Skill[];
+  tools: string[];
+}
+
+interface Certificate {
+  id: string;
+  name: string;
+  issuer: string;
+  year: string;
+  icon: string;
 }
 
 const Skills: React.FC = () => {
+  const [certifications, setCertifications] = React.useState<Certificate[]>([]);
+
+  React.useEffect(() => {
+    const fetchCertificates = async () => {
+      try {
+        const response = await fetch('/api/certificates');
+        const data = await response.json();
+        setCertifications(data);
+      } catch (error) {
+        console.error("Failed to fetch certificates:", error);
+      }
+    };
+    fetchCertificates();
+  }, []);
+
   const skillCategories: SkillCategory[] = [
     {
-      id: 'frontend',
-      name: 'Frontend Development',
+      id: 'fullstack',
+      name: 'Full Stack',
       icon: Code,
       color: 'from-blue-500 to-cyan-500',
       skills: [
-        { name: 'React/Next.js/TypeScript', level: 95, category: 'Frontend' },
-        { name: 'Tailwind CSS', level: 95, category: 'Frontend' },
-        { name: 'Webpack/Vite', level: 82, category: 'Frontend' },
-      ]
+        { name: 'Next.js & React', level: 95 },
+        { name: 'TypeScript', level: 90 },
+        { name: 'Node.js & Express', level: 88 },
+      ],
+      tools: ['MongoDB', 'PostgreSQL', 'Tailwind CSS']
+    },
+    {
+      id: 'agentic-ai',
+      name: 'Agentic AI',
+      icon: Bot,
+      color: 'from-purple-500 to-pink-500',
+      skills: [
+        { name: 'LangChain & LangGraph', level: 92 },
+        { name: 'LLM APIs & Prompting', level: 95 },
+        { name: 'RAG & Vector DBs', level: 88 },
+      ],
+      tools: ['OpenAI', 'Gemini', 'MCP', 'Tool Calling', 'Memory Systems']
     },
     {
       id: 'backend',
-      name: 'Backend Development',
+      name: 'Backend Systems',
       icon: Database,
       color: 'from-green-500 to-emerald-500',
       skills: [
-        { name: 'Node.js/Express', level: 92, category: 'Backend' },
-        { name: 'MongoDB', level: 90, category: 'Backend' },
-        { name: 'Redis', level: 78, category: 'Backend' },
-       
-      ]
+        { name: 'REST APIs & WebSockets', level: 90 },
+        { name: 'Auth & JWT', level: 95 },
+        { name: 'Redis', level: 85 },
+      ],
+      tools: ['Celery', 'RabbitMQ', 'BullMQ']
     },
-  ];
-
-  const certifications = [
-    { name: 'AWS Certified Solutions Architect', issuer: 'Amazon Web Services', year: '2023', icon: '☁️' },
-    { name: 'Google Cloud Professional Developer', issuer: 'Google Cloud', year: '2023', icon: '🌐' },
-    { name: 'Meta Frontend Developer Certificate', issuer: 'Meta', year: '2022', icon: '⚛️' },
-    { name: 'MongoDB Certified Developer', issuer: 'MongoDB', year: '2022', icon: '🍃' },
+    {
+      id: 'devops',
+      name: 'DevOps & Deployment',
+      icon: Terminal,
+      color: 'from-orange-500 to-red-500',
+      skills: [
+        { name: 'Docker', level: 88 },
+        { name: 'GitHub Actions (CI/CD)', level: 85 },
+        { name: 'Linux & Nginx', level: 80 },
+      ],
+      tools: ['Vercel', 'Render']
+    },
   ];
 
   return (
@@ -120,6 +161,17 @@ const Skills: React.FC = () => {
                     </motion.div>
                   ))}
                 </div>
+
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {category.tools.map((tool, idx) => (
+                    <span
+                      key={tool}
+                      className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-full"
+                    >
+                      {tool}
+                    </span>
+                  ))}
+                </div>
               </div>
             </motion.div>
           ))}
@@ -139,7 +191,7 @@ const Skills: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {certifications.map((cert, index) => (
               <motion.div
-                key={cert.name}
+                key={cert.id}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}

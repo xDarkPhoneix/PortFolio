@@ -1,7 +1,8 @@
 "use client";
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, Calendar, CheckCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Calendar, CheckCircle } from 'lucide-react';
+import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -67,9 +68,9 @@ const Contact: React.FC = () => {
   ];
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com/xDarkPhoneix?tab=repositories', label: 'GitHub', color: 'hover:text-gray-900 dark:hover:text-white' },
-    { icon: Linkedin, href: 'https://www.linkedin.com/in/saurav-9b6794266?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', label: 'LinkedIn', color: 'hover:text-blue-600' },
-    { icon: Twitter, href: 'https://twitter.com', label: 'Twitter', color: 'hover:text-blue-400' },
+    { icon: FaGithub, href: 'https://github.com/xDarkPhoneix?tab=repositories', label: 'GitHub', color: 'hover:text-gray-900 dark:hover:text-white' },
+    { icon: FaLinkedin, href: 'https://www.linkedin.com/in/saurav-9b6794266?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', label: 'LinkedIn', color: 'hover:text-blue-600' },
+    { icon: FaTwitter, href: 'https://twitter.com', label: 'Twitter', color: 'hover:text-blue-400' },
     { icon: Mail, href: 'mailto:rajsaurav589@gmail.com', label: 'Email', color: 'hover:text-red-500' },
   ];
 
@@ -84,7 +85,7 @@ const Contact: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Let's <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">Connect</span>
+            Let's <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Connect</span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
             Ready to bring your ideas to life? Let's discuss how we can work together to create something amazing.
@@ -173,7 +174,7 @@ const Contact: React.FC = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-gray-700">
+            <div className="bg-white/50 dark:bg-gray-900/50 backdrop-blur-xl rounded-3xl shadow-2xl p-8 border border-white/20 dark:border-gray-700/50">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
                 Send Message
               </h3>
@@ -260,7 +261,7 @@ const Contact: React.FC = () => {
                   disabled={isSubmitting}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full px-8 py-4 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-primary-500/25 transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
+                  className="w-full px-8 py-4 bg-primary text-primary-foreground rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
                     <>

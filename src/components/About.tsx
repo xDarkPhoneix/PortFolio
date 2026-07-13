@@ -1,7 +1,25 @@
 "use client";
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code2, Lightbulb, Users, Target } from 'lucide-react';
+import { Code2, Lightbulb, Users, Target, BrainCircuit } from 'lucide-react';
+import { useEffect, useState } from 'react';
+
+const AnimatedCounter = ({ from, to, duration = 2 }: { from: number; to: number; duration?: number }) => {
+  const [count, setCount] = useState(from);
+
+  useEffect(() => {
+    let startTime: number | null = null;
+    const animate = (time: number) => {
+      if (!startTime) startTime = time;
+      const progress = Math.min((time - startTime) / (duration * 1000), 1);
+      setCount(Math.floor(progress * (to - from) + from));
+      if (progress < 1) requestAnimationFrame(animate);
+    };
+    requestAnimationFrame(animate);
+  }, [from, to, duration]);
+
+  return <span>{count}</span>;
+};
 
 const About: React.FC = () => {
   const values = [
@@ -55,27 +73,23 @@ const About: React.FC = () => {
           >
             <div className="space-y-4">
               <h3 className="text-3xl font-bold text-gray-900 dark:text-white">
-                Building the Future, One Line at a Time
+                Architecting Intelligent Solutions
               </h3>
               <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-                I'm a passionate full-stack developer with over 3 years of experience crafting 
-                digital experiences that matter. My journey began with curiosity about how 
-                technology can solve real-world problems, and it has evolved into a mission 
-                to create innovative solutions that make a difference.
+                I'm a Full-Stack Developer and Agentic AI Engineer with a robust foundation in the MERN stack and Python. My passion lies in building complex, scalable applications and integrating cutting-edge LLMs to create autonomous workflows.
               </p>
               <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-                From hackathons to internships at leading tech companies, I've consistently 
-                pushed boundaries and embraced challenges. I believe in writing clean, 
-                efficient code and staying at the forefront of technological innovation.
+                With a strong System Design mindset, I specialize in crafting secure REST APIs, optimizing backend services using Redis, and deploying scalable solutions with Docker. From developing conversational RAG chatbots using LangChain and LangGraph to architecting Multi-Agent Systems, I thrive at the intersection of AI innovation and solid software engineering.
               </p>
             </div>
 
             <div className="flex flex-wrap gap-4">
               {[
-                'Full-Stack Development',
-                'Gen AI',
-                'Team Leadership',
-                'Problem Solving',
+                'MERN Stack',
+                'Agentic AI',
+                'LangGraph & RAG',
+                'System Design',
+                'AI Automation',
               ].map((skill, index) => (
                 <motion.span
                   key={skill}
@@ -101,20 +115,28 @@ const About: React.FC = () => {
             <div className="relative bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl p-8 shadow-2xl">
               <div className="grid grid-cols-2 gap-6">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-primary-600 dark:text-primary-400 mb-2">25+</div>
+                  <div className="text-3xl font-bold text-primary-600 dark:text-primary-400 mb-2">
+                    <AnimatedCounter from={0} to={25} />+
+                  </div>
                   <div className="text-sm text-gray-600 dark:text-gray-400">Projects Built</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-secondary-600 dark:text-secondary-400 mb-2">5</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">Hackathons</div>
+                  <div className="text-3xl font-bold text-secondary-600 dark:text-secondary-400 mb-2">
+                    <AnimatedCounter from={0} to={850} />+
+                  </div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">GitHub Contributions</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">3+</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">Years Experience</div>
+                  <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">
+                    <AnimatedCounter from={0} to={30} />+
+                  </div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">Technologies Learned</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-pink-600 dark:text-pink-400 mb-2">50K+</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">Lines of Code</div>
+                  <div className="text-3xl font-bold text-pink-600 dark:text-pink-400 mb-2">
+                    <AnimatedCounter from={0} to={300} />+
+                  </div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">Problems Solved</div>
                 </div>
               </div>
             </div>

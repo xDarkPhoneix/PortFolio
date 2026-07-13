@@ -1,33 +1,69 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
-
-const dataFilePath = path.join(process.cwd(), 'src/data/projects.json');
+import connectToDatabase from '@/lib/mongodb';
+import { Project } from '@/models/Project';
 
 export async function GET() {
   try {
-    const fileContents = fs.readFileSync(dataFilePath, 'utf8');
-    const projects = JSON.parse(fileContents);
+    await connectToDatabase();
+    const projects = await Project.find({}).sort({ createdAt: -1 });
     return NextResponse.json(projects);
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to read projects data' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to fetch projects' }, { status: 500 });
   }
 }
 
 export async function POST(request: Request) {
   try {
-    const newProject = await request.json();
-    const fileContents = fs.readFileSync(dataFilePath, 'utf8');
-    const projects = JSON.parse(fileContents);
+    const data = await request.json();
+    await connectToDatabase();
     
-    const newId = projects.length > 0 ? Math.max(...projects.map((p: any) => p.id)) + 1 : 1;
-    const projectWithId = { id: newId, ...newProject };
-    
-    projects.push(projectWithId);
-    fs.writeFileSync(dataFilePath, JSON.stringify(projects, null, 2));
-    
-    return NextResponse.json(projectWithId, { status: 201 });
+    const newProject = await Project.create(data);
+    return NextResponse.json(newProject, { status: 201 });
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to add project' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to create project' }, { status: 500 });
+  }
+}
+
+export async function PUT(request: Request) {
+  try {
+    const data = await request.json();
+    const { id, ...updateData } = data; // use id as the unique identifier string mapped to _id
+    
+    if (!id) {
+      return NextResponse.json({ error: 'Project ID is required for update' }, { status: 400 });
+    }
+
+    await connectToDatabase();
+    const updatedProject = await Project.findByIdAndUpdate(id, updateData, { new: true });
+    
+    if (!updatedProject) {
+      return NextResponse.json({ error: 'Project not found' }, { status: 404 });
+    }
+    
+    return NextResponse.json(updatedProject);
+  } catch (error) {
+    return NextResponse.json({ error: 'Failed to update project' }, { status: 500 });
+  }
+}
+
+export async function DELETE(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get('id');
+
+    if (!id) {
+      return NextResponse.json({ error: 'Project ID is required' }, { status: 400 });
+    }
+
+    await connectToDatabase();
+    const deleted = await Project.findByIdAndDelete(id);
+
+    if (!deleted) {
+      return NextResponse.json({ error: 'Project not found' }, { status: 404 });
+    }
+    
+    return NextResponse.json({ success: true }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ error: 'Failed to delete project' }, { status: 500 });
   }
 }
