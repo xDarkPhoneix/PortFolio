@@ -1,77 +1,101 @@
 "use client";
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Calendar, CheckCircle } from 'lucide-react';
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { Mail, Phone, MapPin, Send, Calendar, CheckCircle } from "lucide-react";
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
     setIsSubmitting(false);
-    setSubmitStatus('success');
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    
+    setSubmitStatus("success");
+    setFormData({ name: "", email: "", subject: "", message: "" });
+
     // Reset status after 3 seconds
-    setTimeout(() => setSubmitStatus('idle'), 3000);
+    setTimeout(() => setSubmitStatus("idle"), 3000);
   };
 
   const contactInfo = [
     {
       icon: Mail,
-      label: 'Email',
-      value: 'saurav@email.com',
-      href: 'mailto:alex.johnson@email.com',
-      color: 'from-blue-500 to-cyan-500'
+      label: "Email",
+      value: "rajsaurav589@gmail.com",
+      href: "mailto:alex.johnson@email.com",
+      color: "from-blue-500 to-cyan-500",
     },
     {
       icon: Phone,
-      label: 'Phone',
-      value: '+91 9142575453',
-      href: 'tel: 9142575453',
-      color: 'from-green-500 to-emerald-500'
+      label: "Phone",
+      value: "+91 9142575453",
+      href: "tel: 9142575453",
+      color: "from-green-500 to-emerald-500",
     },
     {
       icon: MapPin,
-      label: 'Location',
-      value: 'Bhagalpur Bihar , India',
-      href: '#',
-      color: 'from-purple-500 to-pink-500'
+      label: "Location",
+      value: "Bengaluru , Karanataka, India",
+      href: "#",
+      color: "from-purple-500 to-pink-500",
     },
     {
       icon: Calendar,
-      label: 'Schedule Call',
-      value: 'Book a meeting',
-      href: '#',
-      color: 'from-orange-500 to-red-500'
-    }
+      label: "Schedule Call",
+      value: "Book a meeting",
+      href: "#",
+      color: "from-orange-500 to-red-500",
+    },
   ];
 
   const socialLinks = [
-    { icon: FaGithub, href: 'https://github.com/xDarkPhoneix?tab=repositories', label: 'GitHub', color: 'hover:text-gray-900 dark:hover:text-white' },
-    { icon: FaLinkedin, href: 'https://www.linkedin.com/in/saurav-9b6794266?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', label: 'LinkedIn', color: 'hover:text-blue-600' },
-    { icon: FaTwitter, href: 'https://twitter.com', label: 'Twitter', color: 'hover:text-blue-400' },
-    { icon: Mail, href: 'mailto:rajsaurav589@gmail.com', label: 'Email', color: 'hover:text-red-500' },
+    {
+      icon: FaGithub,
+      href: "https://github.com/xDarkPhoneix?tab=repositories",
+      label: "GitHub",
+      color: "hover:text-gray-900 dark:hover:text-white",
+    },
+    {
+      icon: FaLinkedin,
+      href: "https://www.linkedin.com/in/saurav-9b6794266?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      label: "LinkedIn",
+      color: "hover:text-blue-600",
+    },
+    {
+      icon: FaTwitter,
+      href: "https://twitter.com",
+      label: "Twitter",
+      color: "hover:text-blue-400",
+    },
+    {
+      icon: Mail,
+      href: "mailto:rajsaurav589@gmail.com",
+      label: "Email",
+      color: "hover:text-red-500",
+    },
   ];
 
   return (
@@ -85,10 +109,14 @@ const Contact: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Let's <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Connect</span>
+            Let's{" "}
+            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Connect
+            </span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            Ready to bring your ideas to life? Let's discuss how we can work together to create something amazing.
+            Ready to bring your ideas to life? Let's discuss how we can work
+            together to create something amazing.
           </p>
         </motion.div>
 
@@ -106,9 +134,10 @@ const Contact: React.FC = () => {
                 Get in Touch
               </h3>
               <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
-                I'm always excited to discuss new opportunities, interesting projects, or just chat about technology. 
-                Whether you're looking for a developer, have a project in mind, or want to explore collaboration possibilities, 
-                I'd love to hear from you.
+                I'm always excited to discuss new opportunities, interesting
+                projects, or just chat about technology. Whether you're looking
+                for a developer, have a project in mind, or want to explore
+                collaboration possibilities, I'd love to hear from you.
               </p>
             </div>
 
@@ -127,7 +156,9 @@ const Contact: React.FC = () => {
                   whileHover={{ y: -5, scale: 1.02 }}
                   className="group p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700"
                 >
-                  <div className={`w-12 h-12 bg-gradient-to-r ${item.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                  <div
+                    className={`w-12 h-12 bg-gradient-to-r ${item.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
+                  >
                     <item.icon className="w-6 h-6 text-white" />
                   </div>
                   <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
@@ -179,21 +210,26 @@ const Contact: React.FC = () => {
                 Send Message
               </h3>
 
-              {submitStatus === 'success' && (
+              {submitStatus === "success" && (
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="mb-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg flex items-center gap-3 text-green-700 dark:text-green-400"
                 >
                   <CheckCircle className="w-5 h-5" />
-                  <span>Message sent successfully! I'll get back to you soon.</span>
+                  <span>
+                    Message sent successfully! I'll get back to you soon.
+                  </span>
                 </motion.div>
               )}
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                    >
                       Full Name
                     </label>
                     <input
@@ -208,7 +244,10 @@ const Contact: React.FC = () => {
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                    >
                       Email Address
                     </label>
                     <input
@@ -225,7 +264,10 @@ const Contact: React.FC = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label
+                    htmlFor="subject"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                  >
                     Subject
                   </label>
                   <input
@@ -241,7 +283,10 @@ const Contact: React.FC = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                  >
                     Message
                   </label>
                   <textarea
